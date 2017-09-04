@@ -627,7 +627,8 @@ public class AutomationScripts extends ReUsableMethods {
 		else{
 			updatexlsTestSuit(4, 5, condition);
 		}
-
+		driver.close();
+		
 	}
 
 	public static void TC05() throws Exception {
@@ -654,7 +655,7 @@ public class AutomationScripts extends ReUsableMethods {
 
 		/*Launch URL*/
 		driver.get("https://www.amazon.com/");
-		driver.manage().window().maximize();
+		//driver.manage().window().maximize();
 		Thread.sleep(500);
 
 		String actualURL = driver.getCurrentUrl();
@@ -767,7 +768,7 @@ public class AutomationScripts extends ReUsableMethods {
 
 		/*Launch URL*/
 		driver.get("https://www.amazon.com/");
-		driver.manage().window().maximize();
+		//driver.manage().window().maximize();
 		Thread.sleep(500);
 
 		String actualURL = driver.getCurrentUrl();
@@ -901,7 +902,7 @@ public class AutomationScripts extends ReUsableMethods {
 
 		/*Launch URL*/
 		driver.get("https://www.amazon.com/");
-		driver.manage().window().maximize();
+		//driver.manage().window().maximize();
 		Thread.sleep(500);
 
 		String actualURL = driver.getCurrentUrl();
@@ -1024,7 +1025,7 @@ public class AutomationScripts extends ReUsableMethods {
 
 		/*Launch URL*/
 		driver.get("https://www.amazon.com/");
-		driver.manage().window().maximize();
+		//driver.manage().window().maximize();
 		Thread.sleep(500);
 
 		String actualURL = driver.getCurrentUrl();
@@ -1313,6 +1314,7 @@ public class AutomationScripts extends ReUsableMethods {
 		else{
 			updatexlsTestSuit(10, 5, condition);
 		}
+		driver.close();
 	}
 }
 
