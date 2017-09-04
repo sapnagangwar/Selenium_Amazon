@@ -23,6 +23,8 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class ReUsableMethods extends Driver {
 	static BufferedWriter bw = null;
@@ -45,6 +47,7 @@ public class ReUsableMethods extends Driver {
 
 	static String fireFoxBrowser;
 	static String chromeBrowser;
+	static String microsoftedgeBrowser;
 
 	static String result;
 
@@ -54,9 +57,14 @@ public class ReUsableMethods extends Driver {
 	static String browserName;
 
 
-	//Verify result
+	/* Name Of the method: verify
+	 * Brief Description: compares two strings for equality
+	 * Arguments: two strings
+	 * Created by: Automation team
+	 * Creation Date: Aug 23 2017
+	 * Last Modified: Aug 23 2017
+	 */
 	public static String verify(String expected, String actual){
-
 		if(expected.equals(actual)){
 			return "Pass";
 		}
@@ -64,7 +72,6 @@ public class ReUsableMethods extends Driver {
 			return "Fail";
 		}
 	}
-
 
 
 	/* Name Of the method: enterText
@@ -84,10 +91,9 @@ public class ReUsableMethods extends Driver {
 			Update_Report("Fail", objName+ " not entered", objName +"not visible",driver);
 			return "Fail";
 
-
 		}
-
 	}
+
 	/* Name Of the method: clickButton
 	 * Brief Description: Click on button
 	 * Arguments: obj --> web object,  objName --> name of the object
@@ -106,8 +112,6 @@ public class ReUsableMethods extends Driver {
 		}else{
 			Update_Report("Fail", objName + " not visible", " not able to click,check your application",Driver.driver);
 			return "Fail";
-
-
 		}
 
 	}
@@ -129,7 +133,6 @@ public class ReUsableMethods extends Driver {
 		else{
 			Update_Report("Fail ", objName +" is not traceable, please check your application", " unsuccessful",driver);
 			return "Fail";		
-
 		}
 	}
 
@@ -153,7 +156,14 @@ public class ReUsableMethods extends Driver {
 		}
 	}
 
-	//Return a instance of By class based on type of locator
+	/* Name of the Method: getLocator
+	 * Brief Description: Return a instance of By class based on type of locator
+	 * Arguments: string
+	 * created by :Automation team
+	 * Creation date: Aug 23,2017
+	 * last modified:Aug 23 ,2017
+	 */
+
 	public static By getLocator(String locatorType, String locatorValue) throws Exception{
 
 		if(locatorType.toLowerCase().equals("id"))
@@ -263,6 +273,7 @@ public class ReUsableMethods extends Driver {
 
 
 	}
+
 	/*
 	 * Name of the Method: Update_Report
 	 * Brief description : Updates HTML report with test results
@@ -317,15 +328,20 @@ public class ReUsableMethods extends Driver {
 		} 
 	}
 
+	/*
+	 * Name of the Method: screenshot
+	 * Brief description : creates screenshots
+	 * Arguments: WebDriver
+	 * Created by: Automation team
+	 * Creation date : July 17 2017
+	 * last modified:  July 17 2017
+	 */
 	public static String screenshot(WebDriver dr) throws IOException{
 
 		Date exec_time = new Date();
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
 		String str_time = dateFormat.format(exec_time);
-		//String  ss1Path = "C:\\Users\\QA\\Desktop\\Report\\ScreenShots\\"+ str_time+".png";
-		
-		String  ss1Path = "C:/Users/QA/Desktop/Report/ScreenShots/"+ str_time+".png";
-		
+		String  ss1Path = "C:\\Users\\QA\\Desktop\\Report\\ScreenShots\\"+ str_time+".png";
 		//String  ss1Path = "C:\\Users\\QA\\Desktop\\"+ str_time+".png";
 		File scrFile = ((TakesScreenshot)dr).getScreenshotAs(OutputType.FILE);
 		FileUtils.copyFile(scrFile, new File(ss1Path));
@@ -333,7 +349,14 @@ public class ReUsableMethods extends Driver {
 	}
 
 
-
+	/*
+	 * Name of the Method: updatexlsTestSuit
+	 * Brief description : Updates Test result in an xls sheet
+	 * Arguments: result type(Pass/Fail),row and col where result can be updated
+	 * Created by: Automation team
+	 * Creation date : July 17 2017
+	 * last modified:  July 17 2017
+	 */
 	public static void updatexlsTestSuit(int row, int col, boolean condition) throws IOException, InterruptedException{
 		FileInputStream fsIP= new FileInputStream(new File("C:\\Users\\QA\\Desktop\\Amazon\\testsuit.xls"));  
 		//Access the workbook                  
@@ -394,7 +417,15 @@ public class ReUsableMethods extends Driver {
 
 	}
 
-	//reading test data
+	/*
+	 * Name of the Method: readDataSheet
+	 * Brief description :reading test data
+	 * Arguments: file path
+	 * Created by: Automation team
+	 * Creation date : July 17 2017
+	 * last modified:  July 17 2017
+	 */
+
 	public static HSSFSheet readDataSheet(String dt_path) throws IOException{
 		File xlFile = new File(dt_path);
 		FileInputStream xlDoc = new FileInputStream(xlFile);
@@ -404,8 +435,15 @@ public class ReUsableMethods extends Driver {
 
 	}
 
+	/*
+	 * Name of the Method: getWebElement
+	 * Brief description :get WebElement from xls sheet
+	 * Arguments: file path
+	 * Created by: Automation team
+	 * Creation date : July 17 2017
+	 * last modified:  July 17 2017
+	 */
 
-	//get WebElement from xls sheet
 	public static WebElement getWebElement(HSSFSheet sheet, int rowIndex) throws Exception{
 		String x = sheet.getRow(rowIndex).getCell(2).getStringCellValue();
 		String y = sheet.getRow(rowIndex).getCell(3).getStringCellValue();
@@ -413,7 +451,14 @@ public class ReUsableMethods extends Driver {
 
 	}
 
-	//compare two list
+	/*
+	 * Name of the Method: verify
+	 * Brief description : compare two list
+	 * Arguments: lists
+	 * Created by: Automation team
+	 * Creation date : July 17 2017
+	 * last modified:  July 17 2017
+	 */
 
 	public static String verify( ArrayList<String> expectedlist, ArrayList<String> actualList){
 
@@ -421,10 +466,6 @@ public class ReUsableMethods extends Driver {
 			return "Pass";
 		else
 			return "Fail";
-	}
-	
-	public static void signInAmazon(String email, String password){
-		
 	}
 
 
